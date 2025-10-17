@@ -6,7 +6,7 @@ export const data = new SlashCommandBuilder()
   .setDescription("Update your roles based on your ROBLOX rank")
 
 export async function execute(interaction) {
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     await updateUserRoles(interaction.member)

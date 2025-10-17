@@ -20,7 +20,7 @@ const client = new Client({
 
 client.commands = new Collection()
 
-client.once("ready", async () => {
+client.once("clientReady", async () => {
   console.log(`✅ Logged in as ${client.user.tag}`)
 
   // Initialize database
@@ -52,13 +52,17 @@ client.on("interactionCreate", async (interaction) => {
       console.error(`Error executing ${interaction.commandName}:`, error)
       const reply = {
         content: "❌ There was an error executing this command.",
-        ephemeral: true,
+        flags: 64, // Ephemeral flag
       }
 
-      if (interaction.replied || interaction.deferred) {
-        await interaction.followUp(reply)
-      } else {
-        await interaction.reply(reply)
+      try {
+        if (interaction.replied || interaction.deferred) {
+          await interaction.followUp(reply)
+        } else {
+          await interaction.reply(reply)
+        }
+      } catch (replyError) {
+        console.error("Failed to send error message:", replyError)
       }
     }
   } else if (interaction.isButton()) {
@@ -75,10 +79,14 @@ client.on("interactionCreate", async (interaction) => {
       }
     } catch (error) {
       console.error("Error handling button interaction:", error)
-      await interaction.reply({
-        content: "❌ An error occurred while processing this action.",
-        ephemeral: true,
-      })
+      try {
+        await interaction.reply({
+          content: "❌ An error occurred while processing this action.",
+          flags: 64, // Ephemeral flag
+        })
+      } catch (replyError) {
+        console.error("Failed to send button error message:", replyError)
+      }
     }
   }
 })
