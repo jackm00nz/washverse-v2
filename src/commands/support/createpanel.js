@@ -8,7 +8,7 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "ADMINISTRATIVE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Administrative Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
@@ -28,5 +28,5 @@ export async function execute(interaction) {
   )
 
   await interaction.channel.send({ embeds: [embed], components: [row] })
-  await interaction.reply({ content: "✅ Support panel created!", ephemeral: true })
+  await interaction.reply({ content: "✅ Support panel created!", flags: 64 })
 }

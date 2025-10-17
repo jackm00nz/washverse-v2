@@ -12,14 +12,14 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "ADMINISTRATIVE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Administrative Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
   const targetUser = interaction.options.getUser("user")
   const robloxUsername = interaction.options.getString("username")
 
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     await forceVerifyUser(targetUser.id, robloxUsername, interaction.guild)

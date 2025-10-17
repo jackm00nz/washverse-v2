@@ -4,7 +4,7 @@ export const data = new SlashCommandBuilder().setName("12hr").setDescription("Se
 
 export async function execute(interaction) {
   if (!interaction.channel.name.startsWith("ticket-")) {
-    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", ephemeral: true })
+    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", flags: 64 })
   }
 
   const embed = new EmbedBuilder()
@@ -16,5 +16,5 @@ export async function execute(interaction) {
     .setTimestamp()
 
   await interaction.channel.send({ embeds: [embed] })
-  await interaction.reply({ content: "✅ 12-hour warning sent!", ephemeral: true })
+  await interaction.reply({ content: "✅ 12-hour warning sent!", flags: 64 })
 }

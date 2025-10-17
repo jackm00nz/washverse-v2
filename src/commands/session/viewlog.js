@@ -7,7 +7,7 @@ export async function execute(interaction) {
     .all(interaction.user.id)
 
   if (logs.length === 0) {
-    return interaction.reply({ content: "📝 You have no log requests.", ephemeral: true })
+    return interaction.reply({ content: "📝 You have no log requests.", flags: 64 })
   }
 
   const embed = new EmbedBuilder()
@@ -24,7 +24,7 @@ export async function execute(interaction) {
     })
   }
 
-  await interaction.reply({ embeds: [embed], ephemeral: true })
+  await interaction.reply({ embeds: [embed], flags: 64 })
 }
 
 export const data = new SlashCommandBuilder().setName("viewlog").setDescription("View log requests for your sessions")

@@ -6,10 +6,10 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction) {
   if (!interaction.channel.name.startsWith("ticket-")) {
-    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", ephemeral: true })
+    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", flags: 64 })
   }
 
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     // Fetch all messages in the channel

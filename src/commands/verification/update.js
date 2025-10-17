@@ -14,14 +14,14 @@ export async function execute(interaction) {
   if (!hasRoleCommander && !hasPermission(interaction.member, "CORPORATE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required: Role Commander or Corporate Staff.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
   const targetUser = interaction.options.getUser("user")
   const targetMember = await interaction.guild.members.fetch(targetUser.id)
 
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     await updateUserRoles(targetMember)

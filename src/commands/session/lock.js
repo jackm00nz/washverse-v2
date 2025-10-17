@@ -8,7 +8,7 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "CORPORATE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Corporate Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
@@ -23,5 +23,5 @@ export async function execute(interaction) {
     await sessionChannel.send({ embeds: [embed] })
   }
 
-  await interaction.reply({ content: "✅ Session lock announced!", ephemeral: true })
+  await interaction.reply({ content: "✅ Session lock announced!", flags: 64 })
 }

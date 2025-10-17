@@ -5,7 +5,7 @@ import { db } from "../../database/init.js"
 export const data = new SlashCommandBuilder().setName("verify").setDescription("Verify your ROBLOX account")
 
 export async function execute(interaction) {
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     const robloxData = await getRobloxUser(interaction.user.id)
