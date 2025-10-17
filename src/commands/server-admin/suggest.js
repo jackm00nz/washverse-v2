@@ -11,7 +11,7 @@ export async function execute(interaction) {
   const suggestionsChannel = interaction.guild.channels.cache.find((ch) => ch.name === "suggestions")
 
   if (!suggestionsChannel) {
-    return interaction.reply({ content: "❌ Suggestions channel not found.", ephemeral: true })
+    return interaction.reply({ content: "❌ Suggestions channel not found.", flags: 64 })
   }
 
   const embed = new EmbedBuilder()
@@ -44,5 +44,5 @@ export async function execute(interaction) {
     Date.now(),
   )
 
-  await interaction.reply({ content: "✅ Your suggestion has been submitted!", ephemeral: true })
+  await interaction.reply({ content: "✅ Your suggestion has been submitted!", flags: 64 })
 }

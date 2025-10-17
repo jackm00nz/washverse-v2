@@ -19,7 +19,7 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction) {
   if (!interaction.channel.name.startsWith("ticket-")) {
-    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", ephemeral: true })
+    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", flags: 64 })
   }
 
   const department = interaction.options.getString("department")
@@ -45,5 +45,5 @@ export async function execute(interaction) {
     })
   }
 
-  await interaction.reply({ content: `✅ Ticket transferred to ${department}!`, ephemeral: true })
+  await interaction.reply({ content: `✅ Ticket transferred to ${department}!`, flags: 64 })
 }

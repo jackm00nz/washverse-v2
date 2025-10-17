@@ -9,7 +9,7 @@ export async function execute(interaction) {
   const alliances = db.prepare("SELECT * FROM alliances WHERE representatives IS NOT NULL").all()
 
   if (alliances.length === 0) {
-    return interaction.reply({ content: "📋 No representatives assigned yet.", ephemeral: true })
+    return interaction.reply({ content: "📋 No representatives assigned yet.", flags: 64 })
   }
 
   const embed = new EmbedBuilder().setTitle("👥 Alliance Representatives").setColor("#4A90E2").setTimestamp()
@@ -21,5 +21,5 @@ export async function execute(interaction) {
     })
   }
 
-  await interaction.reply({ embeds: [embed], ephemeral: true })
+  await interaction.reply({ embeds: [embed], flags: 64 })
 }

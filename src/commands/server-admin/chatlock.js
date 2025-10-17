@@ -29,6 +29,6 @@ export async function execute(interaction) {
     )
   } catch (error) {
     console.error("Error locking channel:", error)
-    await interaction.reply({ content: "❌ Failed to lock channel.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to lock channel.", flags: 64 })
   }
 }

@@ -66,10 +66,10 @@ export async function execute(interaction) {
 
     await interaction.reply({
       content: `✅ ${user.tag} has been temporarily banned for ${duration}.\n⚠️ Note: You will need to manually unban them after the duration expires.`,
-      ephemeral: true,
+      flags: 64,
     })
   } catch (error) {
     console.error("Error temp banning user:", error)
-    await interaction.reply({ content: "❌ Failed to temporarily ban user.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to temporarily ban user.", flags: 64 })
   }
 }

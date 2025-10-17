@@ -32,12 +32,12 @@ export async function execute(interaction) {
   // Send to host's DMs
   try {
     await host.send({ embeds: [embed] })
-    await interaction.reply({ content: `✅ Log request sent to ${host.tag}!`, ephemeral: true })
+    await interaction.reply({ content: `✅ Log request sent to ${host.tag}!`, flags: 64 })
   } catch (error) {
     console.error("Error sending log request:", error)
     await interaction.reply({
       content: "❌ Failed to send log request. The host may have DMs disabled.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 }

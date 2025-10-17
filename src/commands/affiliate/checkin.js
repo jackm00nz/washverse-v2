@@ -10,11 +10,11 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "ADMINISTRATIVE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Administrative Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   const alliances = db.prepare("SELECT * FROM alliances WHERE channel_id IS NOT NULL").all()
 

@@ -15,7 +15,7 @@ export async function execute(interaction) {
   const reason = interaction.options.getString("reason")
   const proof = interaction.options.getString("proof")
 
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     // Demote user in ROBLOX group

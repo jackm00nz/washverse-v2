@@ -16,7 +16,7 @@ export async function execute(interaction) {
   const endDateStr = interaction.options.getString("end_date")
   const reason = interaction.options.getString("reason")
 
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     const startDate = new Date(startDateStr).getTime()

@@ -22,7 +22,7 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "CORPORATE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Corporate Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
@@ -52,7 +52,7 @@ export async function execute(interaction) {
       await trainingChannel.send({ content: "@everyone", embeds: [embed] })
     }
 
-    await interaction.reply({ content: "✅ Training announced to the public!", ephemeral: true })
+    await interaction.reply({ content: "✅ Training announced to the public!", flags: 64 })
   } else if (type === "management") {
     embed.setDescription("Management is requested to join the training server to assist with the session.")
 
@@ -62,6 +62,6 @@ export async function execute(interaction) {
       await managementChannel.send({ content: managementRole?.toString() || "@here", embeds: [embed] })
     }
 
-    await interaction.reply({ content: "✅ Training announced to management!", ephemeral: true })
+    await interaction.reply({ content: "✅ Training announced to management!", flags: 64 })
   }
 }

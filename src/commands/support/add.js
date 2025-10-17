@@ -7,7 +7,7 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction) {
   if (!interaction.channel.name.startsWith("ticket-")) {
-    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", ephemeral: true })
+    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", flags: 64 })
   }
 
   const user = interaction.options.getUser("user")
@@ -19,9 +19,9 @@ export async function execute(interaction) {
       ReadMessageHistory: true,
     })
 
-    await interaction.reply({ content: `✅ ${user.tag} has been added to the ticket.`, ephemeral: true })
+    await interaction.reply({ content: `✅ ${user.tag} has been added to the ticket.`, flags: 64 })
   } catch (error) {
     console.error("Error adding user to ticket:", error)
-    await interaction.reply({ content: "❌ Failed to add user to ticket.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to add user to ticket.", flags: 64 })
   }
 }

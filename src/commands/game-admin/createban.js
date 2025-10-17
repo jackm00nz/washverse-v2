@@ -11,14 +11,14 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "CORPORATE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Corporate Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
   // Start the ban creation process
   await interaction.reply({
     content: "🚫 **In-Game Ban Creation**\n\nPlease provide the ROBLOX username of the player to ban:",
-    ephemeral: true,
+    flags: 64,
   })
 
   // Create a collector for the username
@@ -48,7 +48,7 @@ export async function execute(interaction) {
     await interaction.followUp({
       content: `Username: **${banData.username}**\n\nPlease select the ban duration:`,
       components: [durationMenu],
-      ephemeral: true,
+      flags: 64,
     })
   })
 
@@ -75,7 +75,7 @@ export async function execute(interaction) {
 
       await interaction.followUp({
         content: `Username: **${banData.username}**\nDuration: **${banData.duration}**\nReason: **${banData.reason}**\n\nPlease attach proof (image link or description):`,
-        ephemeral: true,
+        flags: 64,
       })
 
       // Collect proof
@@ -123,7 +123,7 @@ export async function execute(interaction) {
 
         await interaction.followUp({
           content: `✅ In-game ban created for **${banData.username}**. This ban will be enforced in the car wash game.`,
-          ephemeral: true,
+          flags: 64,
         })
       })
     })

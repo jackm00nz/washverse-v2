@@ -7,7 +7,7 @@ export async function execute(interaction) {
   const alliances = db.prepare("SELECT * FROM alliances").all()
 
   if (alliances.length === 0) {
-    return interaction.reply({ content: "📋 No alliances registered yet.", ephemeral: true })
+    return interaction.reply({ content: "📋 No alliances registered yet.", flags: 64 })
   }
 
   const embed = new EmbedBuilder()
@@ -24,5 +24,5 @@ export async function execute(interaction) {
     })
   }
 
-  await interaction.reply({ embeds: [embed], ephemeral: true })
+  await interaction.reply({ embeds: [embed], flags: 64 })
 }

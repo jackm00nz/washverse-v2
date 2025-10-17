@@ -11,13 +11,13 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "ADMINISTRATIVE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Administrative Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
   await interaction.reply({
     content: "⛔ **Permanent Blacklist Creation**\n\nPlease provide the ROBLOX username to blacklist:",
-    ephemeral: true,
+    flags: 64,
   })
 
   const filter = (m) => m.author.id === interaction.user.id
@@ -32,7 +32,7 @@ export async function execute(interaction) {
 
     await interaction.followUp({
       content: `Username: **${blacklistData.username}**\n\nPlease provide the reason for the blacklist:`,
-      ephemeral: true,
+      flags: 64,
     })
 
     // Collect reason
@@ -44,7 +44,7 @@ export async function execute(interaction) {
 
       await interaction.followUp({
         content: `Username: **${blacklistData.username}**\nReason: **${blacklistData.reason}**\n\nPlease attach proof (image link or description):`,
-        ephemeral: true,
+        flags: 64,
       })
 
       // Collect proof
@@ -89,7 +89,7 @@ export async function execute(interaction) {
 
         await interaction.followUp({
           content: `✅ Permanent blacklist created for **${blacklistData.username}**. This user is now banned from all WashVerse game facilities.`,
-          ephemeral: true,
+          flags: 64,
         })
       })
     })

@@ -13,7 +13,7 @@ export async function execute(interaction) {
   const logs = db.prepare("SELECT * FROM mod_logs WHERE user_id = ? ORDER BY timestamp DESC LIMIT 10").all(user.id)
 
   if (logs.length === 0) {
-    return interaction.reply({ content: `📋 No moderation logs found for ${user.tag}.`, ephemeral: true })
+    return interaction.reply({ content: `📋 No moderation logs found for ${user.tag}.`, flags: 64 })
   }
 
   const embed = new EmbedBuilder()
@@ -42,5 +42,5 @@ export async function execute(interaction) {
     })
   }
 
-  await interaction.reply({ embeds: [embed], ephemeral: true })
+  await interaction.reply({ embeds: [embed], flags: 64 })
 }

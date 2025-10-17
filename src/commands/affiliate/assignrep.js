@@ -12,7 +12,7 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "ADMINISTRATIVE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Administrative Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
@@ -23,7 +23,7 @@ export async function execute(interaction) {
   const alliance = db.prepare("SELECT * FROM alliances WHERE group_name = ?").get(groupName)
 
   if (!alliance) {
-    return interaction.reply({ content: `❌ Alliance "${groupName}" not found.`, ephemeral: true })
+    return interaction.reply({ content: `❌ Alliance "${groupName}" not found.`, flags: 64 })
   }
 
   // Update representatives
@@ -51,5 +51,5 @@ export async function execute(interaction) {
     console.error("Error sending DM:", error)
   }
 
-  await interaction.reply({ content: `✅ ${user.tag} assigned as representative for ${groupName}!`, ephemeral: true })
+  await interaction.reply({ content: `✅ ${user.tag} assigned as representative for ${groupName}!`, flags: 64 })
 }
