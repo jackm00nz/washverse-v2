@@ -5,7 +5,7 @@ export const data = new SlashCommandBuilder().setName("claim").setDescription("C
 export async function execute(interaction) {
   // Check if in a ticket channel
   if (!interaction.channel.name.startsWith("ticket-")) {
-    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", ephemeral: true })
+    return interaction.reply({ content: "❌ This command can only be used in ticket channels.", flags: 64 })
   }
 
   const embed = new EmbedBuilder()
@@ -15,5 +15,5 @@ export async function execute(interaction) {
     .setTimestamp()
 
   await interaction.channel.send({ embeds: [embed] })
-  await interaction.reply({ content: "✅ You have claimed this ticket!", ephemeral: true })
+  await interaction.reply({ content: "✅ You have claimed this ticket!", flags: 64 })
 }

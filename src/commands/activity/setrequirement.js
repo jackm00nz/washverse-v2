@@ -25,7 +25,7 @@ export async function execute(interaction) {
   if (!hasPermission(interaction.member, "ADMINISTRATIVE_STAFF")) {
     return interaction.reply({
       content: "❌ You do not have permission to use this command. Required rank: Administrative Staff or higher.",
-      ephemeral: true,
+      flags: 64,
     })
   }
 
@@ -42,10 +42,10 @@ export async function execute(interaction) {
 
     await interaction.reply({
       content: `✅ Requirement updated: **${rank}** now requires **${value}** ${type.replace("_", " ")}`,
-      ephemeral: true,
+      flags: 64,
     })
   } catch (error) {
     console.error("Error setting requirement:", error)
-    await interaction.reply({ content: "❌ Failed to set requirement.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to set requirement.", flags: 64 })
   }
 }

@@ -23,7 +23,7 @@ export async function execute(interaction) {
   // Parse duration
   const durationMs = parseDuration(duration)
   if (!durationMs) {
-    return interaction.reply({ content: "❌ Invalid duration format. Use formats like: 10m, 1h, 1d", ephemeral: true })
+    return interaction.reply({ content: "❌ Invalid duration format. Use formats like: 10m, 1h, 1d", flags: 64 })
   }
 
   try {
@@ -52,10 +52,10 @@ export async function execute(interaction) {
       await modLogChannel.send({ embeds: [embed] })
     }
 
-    await interaction.reply({ content: `✅ ${user.tag} has been timed out for ${duration}.`, ephemeral: true })
+    await interaction.reply({ content: `✅ ${user.tag} has been timed out for ${duration}.`, flags: 64 })
   } catch (error) {
     console.error("Error timing out user:", error)
-    await interaction.reply({ content: "❌ Failed to timeout user.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to timeout user.", flags: 64 })
   }
 }
 

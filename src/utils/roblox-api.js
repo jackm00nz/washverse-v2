@@ -6,12 +6,30 @@ export async function authenticateRoblox() {
   if (authenticated) return
 
   try {
-    await noblox.setCookie(process.env.ROBLOX_COOKIE)
+    const cookie = process.env.ROBLOX_COOKIE
+
+    if (!cookie) {
+      throw new Error("ROBLOX_COOKIE environment variable is not set")
+    }
+
+    if (cookie.length < 100) {
+      throw new Error(
+        "ROBLOX_COOKIE appears to be invalid (too short). Make sure you copied the full .ROBLOSECURITY cookie value.",
+      )
+    }
+
+    console.log("🔐 Attempting to authenticate with ROBLOX...")
+    await noblox.setCookie(cookie)
     const currentUser = await noblox.getCurrentUser()
-    console.log(`✅ Authenticated as ${currentUser.UserName}`)
+    console.log(`✅ Authenticated as ${currentUser.UserName} (ID: ${currentUser.UserID})`)
     authenticated = true
   } catch (error) {
-    console.error("❌ Failed to authenticate with ROBLOX:", error)
+    console.error("❌ Failed to authenticate with ROBLOX:", error.message)
+    console.error("💡 Tips:")
+    console.error("   - Make sure ROBLOX_COOKIE is set in Railway environment variables")
+    console.error("   - Cookie should be the full .ROBLOSECURITY value from your browser")
+    console.error("   - Cookie may have expired - try getting a fresh one")
+    console.error("   - Make sure the account has permissions in the group")
     throw error
   }
 }

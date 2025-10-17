@@ -4,7 +4,7 @@ import { getActivityData } from "../../utils/hyra-api.js"
 export const data = new SlashCommandBuilder().setName("myactivity").setDescription("View your activity information")
 
 export async function execute(interaction) {
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: 64 })
 
   try {
     const activityData = await getActivityData(interaction.user.id)

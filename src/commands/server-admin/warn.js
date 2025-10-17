@@ -53,9 +53,9 @@ export async function execute(interaction) {
       console.log("Could not DM user")
     }
 
-    await interaction.reply({ content: `✅ ${user.tag} has been warned.`, ephemeral: true })
+    await interaction.reply({ content: `✅ ${user.tag} has been warned.`, flags: 64 })
   } catch (error) {
     console.error("Error warning user:", error)
-    await interaction.reply({ content: "❌ Failed to warn user.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to warn user.", flags: 64 })
   }
 }

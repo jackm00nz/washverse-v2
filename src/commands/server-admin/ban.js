@@ -56,9 +56,9 @@ export async function execute(interaction) {
       await modLogChannel.send({ embeds: [embed] })
     }
 
-    await interaction.reply({ content: `✅ ${user.tag} has been permanently banned.`, ephemeral: true })
+    await interaction.reply({ content: `✅ ${user.tag} has been permanently banned.`, flags: 64 })
   } catch (error) {
     console.error("Error banning user:", error)
-    await interaction.reply({ content: "❌ Failed to ban user.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to ban user.", flags: 64 })
   }
 }

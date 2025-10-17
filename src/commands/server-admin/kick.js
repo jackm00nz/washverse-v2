@@ -57,9 +57,9 @@ export async function execute(interaction) {
       await modLogChannel.send({ embeds: [embed] })
     }
 
-    await interaction.reply({ content: `✅ ${user.tag} has been kicked.`, ephemeral: true })
+    await interaction.reply({ content: `✅ ${user.tag} has been kicked.`, flags: 64 })
   } catch (error) {
     console.error("Error kicking user:", error)
-    await interaction.reply({ content: "❌ Failed to kick user.", ephemeral: true })
+    await interaction.reply({ content: "❌ Failed to kick user.", flags: 64 })
   }
 }

@@ -13,7 +13,7 @@ export async function handleTicketButton(interaction, args) {
     )
 
     if (existingTicket) {
-      return interaction.reply({ content: "❌ You already have an open ticket.", ephemeral: true })
+      return interaction.reply({ content: "❌ You already have an open ticket.", flags: 64 })
     }
 
     // Create ticket channel
@@ -44,6 +44,6 @@ export async function handleTicketButton(interaction, args) {
       .setTimestamp()
 
     await ticketChannel.send({ content: `${user}`, embeds: [embed] })
-    await interaction.reply({ content: `✅ Ticket created: ${ticketChannel}`, ephemeral: true })
+    await interaction.reply({ content: `✅ Ticket created: ${ticketChannel}`, flags: 64 })
   }
 }
